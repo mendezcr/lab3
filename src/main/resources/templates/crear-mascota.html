@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear Mascota</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>Crear Nueva Mascota</h1>
+            <form th:action="@{/mascotas}" th:object="${mascota}" method="post">
+                <div>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" th:field="*{nombre}" />
+                </div>
+                <div>
+                    <label for="tipo">Tipo:</label>
+                    <input type="text" id="tipo" th:field="*{tipo}" />
+                </div>
+                <div>
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" th:field="*{edad}" />
+                </div>
+                <div>
+                    <label for="raza">Raza:</label>
+                    <input type="text" id="raza" th:field="*{raza}" />
+                </div>
+                <div>
+                    <button type="submit">Guardar</button>
+                </div>
+            </form>
+            <a href="/mascotas">Volver a la lista</a>
+        </div>
+    </main>
+</body>
+</html>

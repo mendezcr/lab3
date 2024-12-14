@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Lista de Mascotas </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1> Lista de Mascotas </h1>
+            <a href="/" class="home-link">Volver a la página de inicio</a>
+            <br>
+            <a href="/mascotas/nueva">Agregar Nueva Mascota</a>
+            <br>
+            <table border="1">
+                <thead>
+                    <br>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Edad</th>
+                        <th>Raza</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="mascota : ${mascotas}">
+                        <td th:text="${mascota.id}">1</td>
+                        <td th:text="${mascota.nombre}">Nombre</td>
+                        <td th:text="${mascota.tipo}">Tipo</td>
+                        <td th:text="${mascota.edad}">Edad</td>
+                        <td th:text="${mascota.raza}">Tipo</td>
+                        <td>
+                            <a th:href="@{/mascotas/editar/{id}(id=${mascota.id})}">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="mascota : ${mascotas}">
+                        <td th:text="${mascota.id}"></td>
+                        <td th:text="${mascota.nombre}"></td>
+                        <td>
+                            <a th:href="@{'/mascotas/editar/' + ${mascota.id}}">Editar</a>
+                            <form th:action="@{'/mascotas/eliminar/' + ${mascota.id}}" method="post" style="display:inline;">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
